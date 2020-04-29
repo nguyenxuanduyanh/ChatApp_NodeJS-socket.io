@@ -35,6 +35,12 @@ io.on('connection', function(socket) {
             socket.broadcast.emit('update-userlist', users_arr)
 
         })
+        socket.on('is-user-typing', function() {
+            socket.broadcast.emit('user-typing', data)
+        })
+        socket.on('user-not-type', function() {
+            socket.broadcast.emit('user-nottype-server', data)
+        })
 
     })
 

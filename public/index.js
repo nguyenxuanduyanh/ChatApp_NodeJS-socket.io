@@ -17,6 +17,12 @@ socket.on('register-success', function() {
 socket.on('server-msg-all-user', function(message) {
     $(".chat-messages").append("<div class='message'>" + "<p class='meta'>" + message.user + "</p>" + "<p class='text'>" + message.content + "</p>" + "</div>")
 })
+socket.on('user-typing', function(data) {
+    $("#typing").html(data + " is typing " + "<span><img src='/images/typing2.gif' width='40px' height='20px' alt=''></span>")
+})
+socket.on('user-nottype-server', function(data) {
+    $("#typing").html(" ")
+})
 
 $(document).ready(function() {
     $(".join-container").show()
@@ -33,5 +39,10 @@ $(document).ready(function() {
         $(".chat-container").hide()
 
     })
-
+    $("#msg").focusin(function() {
+        socket.emit('is-user-typing')
+    })
+    $("#msg").focusout(function() {
+        socket.emit('user-not-type')
+    })
 })
