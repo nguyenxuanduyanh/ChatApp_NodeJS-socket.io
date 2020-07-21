@@ -48,7 +48,7 @@ app.use(passport.session());
 
 //}) 
 
-server.listen(parseInt(process.env.SERVER_PORT) || 3000, function() {
+server.listen(parseInt(process.env.PORT) || 3000, function() {
     console.log("The Socket.IO server is running on port " + process.env.SERVER_PORT)
 })
 
